@@ -366,7 +366,7 @@ module.exports = function (app, passport) {
                     'date': resu[i]['date'],
                     'author': resu[i]['author'],
                     'amazon': resu[i]['amazon'],
-                    'image': resu[i]['image']
+                    'image': image
                 })
                 j++
             }
