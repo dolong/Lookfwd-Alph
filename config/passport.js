@@ -99,9 +99,9 @@ module.exports = function(passport) {
                         newUser.local.password = newUser.generateHash(password);
 
                         newUser.save(function(err) {
-                            if (err)
+                            if (err) {
                                 return done(err);
-
+                            }
                             return done(newUser);
                         });
                     }
@@ -132,7 +132,6 @@ module.exports = function(passport) {
     // FACEBOOK ================================================================
     // =========================================================================
     passport.use(new FacebookStrategy({
-
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
