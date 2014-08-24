@@ -1,0 +1,150 @@
+<html xmlns="http://www.w3.org/1999/html">
+<% include ../app/head.ejs %>
+<body>
+<div class="container-fluid main-content">
+    <div class="modal-shiftfix">
+        <% include ../app/header %>
+        <script>
+            $(function () {
+                var frm = $('.ajaxsubmit');
+                $.each(frm, function (i, val) {
+                    var k = i;
+                    var indfrm = $("#book" + k + " .ajaxsubmit")
+                    var indfrmbtn = $("#book" + k + " .ajaxsubmit .btn")
+                    k++;
+                    indfrm.submit(function (ev) {
+                        $.ajax({
+                            type: indfrm.attr('method'),
+                            url: indfrm.attr('action'),
+                            data: indfrm.serialize(),
+                            success: function (data) {
+                                indfrm.find($('.btn')).val("Added")
+                                indfrm.find($('.btn')).css("background-color", "#60c560");
+                                indfrm.find($('.btn')).css("color", "#fff");
+                            }
+                        });
+                        ev.preventDefault();
+                    });
+                });
+            });
+        </script>
+        <div class="col-md-2 section" id="book-results" style="display: block;">
+        </div>
+        <div class="col-md-8 section" id="book-results" style="display: block;">
+            <div class="widget-container mov fluid-height fullwidth">
+                <div class="heading">
+                    <p>Amazon Information</p>
+                </div>
+            </div>
+            <% for(var i = 0; i < res.length; i++) { %>
+            <div class="movie widget-content text-center" id="book<%= i %>">
+                <div class="mov-thumbnail">
+                    <img src=<%= res[i]['image'] %>>
+                </div>
+                <div class="info">
+                    <h1>
+                        <%= res[i]['title'] %>
+                    </h1>
+
+                    <p>
+                        <%= res[i]['author'] %>
+                    </p>
+
+                    <h3>
+                        Release Date: <%= res[i]['date'] %>
+                    </h3>
+
+                    <p>
+                        <%= res[i]['desc'].toString().replace(/<(?:.|\n)*?>/gm, '') %>
+                    </p>
+                    <a href="<%= res[i]['amazon'] %>">
+                        <img target="_blank" class="amazon-link"
+                             src="http://4.bp.blogspot.com/-r45oOuYcc5k/UP1lWEgACcI/AAAAAAAAAN4/uWBZaNKtdsU/s1600/Amazon_logo1.jpg">
+                    </a>
+                </div>
+                <div class="mov-top">
+                    <div class="calendar">
+                        <form class="ajaxsubmit" style="float:left;width:100%;" action="/editbook" method="post">
+                            <script>
+                                $( document ).ready(function() {
+                                    $('.showOptions').click(function(){
+                                        var param1var = getQueryVariable("id");
+
+                                        function getQueryVariable(variable) {
+                                            var query = window.location.search.substring(1);
+                                            var vars = query.split("&");
+                                            for (var i=0;i<vars.length;i++) {
+                                                var pair = vars[i].split("=");
+                                                if (pair[0] == variable) {
+                                                    return pair[1];
+                                                }
+                                            }
+                                        }
+                                        $('#bookID').val(param1var);
+                                    });
+
+                                    $('input[type="checkbox"]').click(function() {
+                                        field = $(this).attr('check')
+                                        if ($(this).is(':checked')){
+                                            $('input[name="'+ field +'"]').removeAttr('disabled')
+                                        } else {
+                                            $('input[name="'+ field +'"]').attr('disabled',"")  ;
+                                        }
+                                    });
+                                });
+                            </script>
+                            <input name="id" id="bookID" class="hidden form-control" type="text"
+                                   value="test">
+                            <input name="title" disabled class="hidden form-control" type="text"
+                                   value="<%= res[i]['title'] %>">
+                            <input name="image" disabled class="hidden form-control" type="text"
+                                   value="<%= res[i]['image'] %>">
+                            <input name="date" disabled class="hidden form-control" type="text"
+                                   value="<%= res[i]['date'] %>">
+                            <input name="author" disabled class="hidden form-control" type="text"
+                                   value="<%= res[i]['author'] %>">
+                            <input name="desc" disabled class="hidden form-control" type="text"
+                                   value="<%= res[i]['desc'].toString().replace(/<(?:.|\n)*?>/gm, '') %>">
+                            <div class="platform">
+                                <input name="" check="title" class="form-control" type="checkbox" >
+                                <span>Add Amazon Full Title</span>
+                            </div>
+                            <div class="platform">
+                                <input name="" check="author" class="form-control" type="checkbox">
+                                <span>Add Amazon Author(s)</span>
+                            </div>
+                            <div class="platform">
+                                <input name="" check="date" class="form-control" type="checkbox" >
+                                <span>Add Amazon date</span>
+                            </div>
+                            <div class="platform">
+                                <input name="" check="desc" class="form-control" type="checkbox">
+                                <span>Add Amazon Description</span>
+                            </div>
+                            <div class="">
+                                <input name="platforms" check="image" class="form-control" type="checkbox">
+                                <span>Add Amazon Image</span>
+                            </div>
+                            <input name="user" class="hidden form-control" type="text" value="Guest">
+                            <br />
+                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Admin Update">
+                        </form>
+                    </div>
+                </div>
+                <div class="mov-bottom">
+                    <i class="icon-cloud-upload"></i>
+                    <a class="showOptions" href="#">
+                        Update this Info
+                        <a/>
+                </div>
+            </div>
+            <% } %>
+
+        </div>
+    </div>
+
+    <% include ../app/footer %>
+</div>
+</body>
+
+</html>

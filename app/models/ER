@@ -1,0 +1,43 @@
+var userSchema = mongoose.Schema({
+    local            : {
+        email        : String,
+        password     : String,
+    },
+    facebook         : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    },
+    twitter          : {
+        id           : String,
+        token        : String,
+        displayName  : String,
+        username     : String
+    },
+    google           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    }
+
+});
+var BookSchema = new mongoose.Schema({
+	id: {type: ObjectId},
+	date: {type: Date},
+	title: {type: String, unique: true},
+	author: {type: String},
+	amazon: {type: String},
+	image: {type: String},
+	desc: {type: String}
+})
+var notificationSchema = new mongoose.Schema({
+	id: {type: ObjectId},
+	date: {type: Date}, //Date to be Notified
+	title: {type: String}, //Book Title
+	bookid: {type: String}, //Book ID
+	user: {type: String}, //User email
+	platforms: {type: String[]}, //Notification Platforms (e.g. mobile push, email..)
+	read: {type: boolean} //Notification has been read or not
+})

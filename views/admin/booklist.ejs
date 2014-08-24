@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<% include ../app/head.ejs %>
+<script>
+    var urlParams;
+    (window.onpopstate = function () {
+        var match,
+                pl = /\+/g,  // Regex for replacing addition symbol with a space
+                search = /([^&=]+)=?([^&]*)/g,
+                decode = function (s) {
+                    return decodeURIComponent(s.replace(pl, " "));
+                },
+                query = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+            urlParams[decode(match[1])] = decode(match[2]);
+
+        if (urlParams["notfound"] == "") {
+            alert("Not Found");
+            document.location.href = String(document.location.href).replace(/&notfound/, "");
+        }
+    })();
+</script>
+<script>
+    $('#searchBook').submit(function (ev) {
+        search = $('#searchBook input').val()
+        window.location("/q=" + search);
+    });
+</script>
+
+<body>
+<div class="modal-shiftfix">
+    <% include ../app/header %>
+    <div class="container-fluid main-content">
+        <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+                <div class="heading">
+                    <i class="icon-book"></i>Admin Book List
+                </div>
+                <div class="widget-content padded clearfix">
+                    <div id="dataTable1_wrapper" class="dataTables_wrapper" role="grid">
+                        <div id="dataTable1_length" class="dataTables_length">
+                        </div>
+                        <div class="dataTables_filter" id="dataTable1_filter">
+                            <form id="searchBook"><label>Search: <input type="text" name="q" aria-controls="dataTable1"></label>
+                                <input class="hidden" type="submit"></form>
+                        </div>
+                        <table class="table table-bordered table-striped dataTable" id="dataTable1"
+                               aria-describedby="dataTable1_info">
+                            <thead>
+                            <tr role="row">
+                                <th class="check-header hidden-xs sorting_disabled" role="columnheader" rowspan="1"
+                                    colspan="1" aria-label="
+                      Image
+                    " style="width: 17px;">Image
+                                </th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dataTable1"
+                                    rowspan="1" colspan="1" aria-label="
+                      Title
+                    : activate to sort column ascending" style="width: 225px;">
+                                    Title
+                                </th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="dataTable1"
+                                    rowspan="1" colspan="1" aria-label="
+                      Author
+                    : activate to sort column ascending" style="width: 214px;">
+                                    Author
+                                </th>
+                                <th class="hidden-xs sorting" role="columnheader" tabindex="0"
+                                    aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Amazon
+                    : activate to sort column ascending" style="width: 384px;">
+                                    Amazon
+                                </th>
+                                <th class="sorting" role="columnheader" tabindex="0"
+                                    aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Date
+                    : activate to sort column ascending" style="width: 240px;">
+                                    Date
+                                </th>
+                                <th class="hidden-xs sorting" role="columnheader" tabindex="0"
+                                    aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Description
+                    : activate to sort column ascending" style="width: 240px;">
+                                    Description
+                                </th>
+                                <th class="hidden-xs sorting" role="columnheader" tabindex="0"
+                                    aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Status
+                    : activate to sort column ascending" style="width: 243px;">
+                                    Status
+                                </th>
+                                <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label=""
+                                    style="width: 72px;">Remove
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                            <script>
+                                $(document).ready(function () {
+                                    $('.edit').click(function () {
+                                        field = $(this).parent().attr('name');
+                                        id = $(this).parent().parent().attr('name');
+                                        val = $(this).parent().find('span').text();
+                                        $(this).parent().html(
+                                                        '<form class="ajaxsubmit" action="/editbook" method="post">' +
+                                                        '<input name="id" class="hidden" value="' + id + '">' +
+                                                        '<input name=' + field + ' value="' + val + '">' +
+                                                        '<button class="btn btn-xs btn-danger">Save</button>' +
+                                                        '</book>');
+                                    });
+                                });
+                            </script>
+                            <% for(var i = 0; i < res.length; i++) { %>
+                            <% if(i % 2 == 0){ %>
+                            <tr class="odd" name="<%= res[i]['id'] %>">
+                                <% } else{ %>
+                            <tr class="even" name="<%= res[i]['id'] %>">
+                                <% } %>
+                                <td name="image" class="check hidden-xs  sorting_1">
+                                    <img src="<%= res[i]['image'] %>" width="100" height="100">
+                                    <span class="hidden"><%= res[i]['image'] %></span>
+                                    <a class="edit" href="javascript:;"><i class="fa fa-fw icon-edit"></i></a>
+                                    <br>ID: <%= res[i]['id'] %>
+                                </td>
+                                <td name="title" class="title">
+                                    <span><%= res[i]['title'] %></span>
+                                    <a class="edit" href="javascript:;"><i class="fa fa-fw icon-edit"></i></a>
+                                </td>
+                                <td name="author" class=" ">
+                                    <span><%= res[i]['author'] %></span>
+                                    <a class="edit" href="javascript:;"><i class="fa fa-fw icon-edit"></i></a>
+                                </td>
+                                <td name="amazon" class="hidden-xs ">
+                                    <span><%= res[i]['amazon'] %></span>
+                                    <a class="edit" href="javascript:;"><i class="fa fa-fw icon-edit"></i></a>
+                                </td>
+                                <td name="date" class=" ">
+                                    <span><%= res[i]['date'] %></span>
+                                    <a class="edit" href="javascript:;"><i class="fa fa-fw icon-edit"></i></a>
+                                </td>
+                                <td name="desc" class="hidden-xs ">
+                                    <span><%= res[i]['desc'] %></span>
+                                    <a class="edit" href="javascript:;"><i class="fa fa-fw icon-edit"></i></a>
+                                </td>
+                                <td class="hidden-xs ">
+                                    <a href="checkamazon?q=<%= res[i]['title'] %>&id=<%= res[i]['id'] %>">Compare to
+                                        Amazon for Update</a>
+                                </td>
+                                <td class="actions ">
+                                    <div class="action-buttons">
+                                        <button class="table-actions">
+                                            <i class="icon-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                            </tbody>
+                        </table>
+
+                        <% if (!pg) {
+                            pg = 1
+                        } %>
+                        <div class="dataTables_info" id="dataTable1_info">Showing <%= (pg - 1) * 10 + 1 %>
+                            to <%= pg * 10 %> of <%= c %> entries
+                        </div>
+                        <div class="dataTables_paginate paging_full_numbers" id="dataTable1_paginate">
+                            <a href="?p=1" tabindex="0" class="first paginate_button"
+                               id="dataTable1_first">First</a>
+                            <a href="?p=<%= pg - 1 %>" tabindex="0" class="previous paginate_
+                                <% if (pg == 1) { %>
+                                    button paginate_button_disabled
+                                <% } %>
+                              " id="dataTable1_previous">Previous</a><span>
+					
+					</span>
+                            <a href="?p=<%= pg + 1 %>" tabindex="0" class="next paginate_button" id="dataTable1_next">Next</a>
+                            <a href="?p=<%= Math.floor(c / 10) + 1 %>" tabindex="0" class="last paginate_button"
+                               id="dataTable1_last">Last</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <% include ../app/footer %>
+</div>
+</body>
+
+</html>

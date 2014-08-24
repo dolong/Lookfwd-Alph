@@ -1,0 +1,8 @@
+jsonstr = [ 
+    {
+        "date": 2014,
+        "title": "The Chrysanthemum and the Dandelion",
+        "author": "Liu, Ken",
+        "series": "Dandelion Dynasty #1"
+    }
+];
