@@ -36,13 +36,14 @@
         <div class="col-lg-12">
             <div class="widget-container fluid-height clearfix">
                 <div class="heading">
-                    <i class="icon-book"></i>Admin Book List
+                    <i class="icon-book"></i><p>Admin Book List</p>
                 </div>
                 <div class="widget-content padded clearfix">
                     <div id="dataTable1_wrapper" class="dataTables_wrapper" role="grid">
                         <div id="dataTable1_length" class="dataTables_length">
                         </div>
                         <div class="dataTables_filter" id="dataTable1_filter">
+                            <a href="additem">Add New Book</a>
                             <form id="searchBook"><label>Search: <input type="text" name="q" aria-controls="dataTable1"></label>
                                 <input class="hidden" type="submit"></form>
                         </div>
@@ -150,11 +151,14 @@
                                         Amazon for Update</a>
                                 </td>
                                 <td class="actions ">
-                                    <div class="action-buttons">
-                                        <button class="table-actions">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                    </div>
+                                    <form action="/deletebook" method="post">
+                                        <div class="action-buttons">
+                                            <input name="id" class="hidden" value="<%= res[i]['id'] %>">
+                                            <button class="table-actions">
+                                                <i class="icon-trash"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </td>
                             </tr>
                             <% } %>

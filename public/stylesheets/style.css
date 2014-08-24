@@ -4631,7 +4631,9 @@ input.search-large {
 #book-results {
     display: none;
 }
-
+.amazonlink img {
+    margin-left: 10px;
+}
 .emailNotification {
 
     display: inline-block;
@@ -4649,6 +4651,16 @@ input.search-large {
     -webkit-border-radius: 2px;
 }
 
+.platform {
+    text-align: left;
+}
+.addlook {
+    padding-left: 20px;
+}
+.embedlink {
+    float:left;
+    padding-right:10px;
+}
 .amazon-link {
     border: 1px solid grey;
 }

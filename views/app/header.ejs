@@ -13,24 +13,7 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">
-                    <div class="notifications label label-info">
-                      Read
-                    </div>
-                    <p>
-                      Winds of Winter is released!
-                    </p></a>
-                    
-                  </li>
-                  <li><a href="#">
-                    <div class="notifications label label-info">
-                      Read
-                    </div>
-                    <p>
-                      Michael Sullivan has a new upcoming book
-                    </p></a>
-                    
-                  </li>
+                  <li>
                   <li>
 					<a href="/notifications">
                    <div class="notifications label label-info" style="
@@ -82,13 +65,18 @@
                   </li>
                 </ul>
               </li>
+                <li class="dropdown admin hidden-xs">
+                    <a href="/admin">
+                        Admin
+                    </a>
+                </li>
               <li class="dropdown user hidden-xs">
 			  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 				<% if (user) { %>
                  <img width="34" height="34" src="images/avatar-male.jpg" /><%= user.local.email %><b class="caret"></b>
 
 				<% } else { %>
-                 <img width="34" height="34" src="images/avatar-male.jpg" />Guest<b class="caret"></b>
+                 <!img width="34" height="34" src="images/avatar-male.jpg" />Guest<b class="caret"></b>
 				<% } %>
                 </a>
                 <ul class="dropdown-menu">

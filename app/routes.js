@@ -104,6 +104,15 @@ module.exports = function (app, passport) {
 // =============================================================================
 // ADMIN                      ==================================================
 // =============================================================================
+
+
+    // show the home page (will also have our login links)
+    app.get('/additem', function (req, res) {
+            res.render('./app/additem.ejs', {
+                user: req.user
+            });
+    });
+
     //Check Amazon to see if book is there
     app.get('/checkamazon', function (req, res) {
         var q = req.query['q']
@@ -226,7 +235,7 @@ module.exports = function (app, passport) {
     });
 
 
-    //Process A Delete Notification
+    //Process a edit
     app.post('/editbook', function (req, res) {
         newbook = req.body
         Book.update({_id: req.param('id')},  newbook , {}, function (err) {
@@ -235,6 +244,35 @@ module.exports = function (app, passport) {
         });
         backURL=req.header('Referer') || '/';
         res.redirect(backURL);
+    })
+
+
+    //Process A Delete
+    app.post('/deletebook', function (req, res) {
+        Book.findOne({ _id: req.param('id')}).remove().exec();
+        backURL=req.header('Referer') || '/';
+        res.redirect(backURL);
+    })
+
+    //Process a additional book
+    app.post('/addbook', function (req, res) {
+        newbook = req.body
+
+        var rec = new Book(newbook);
+
+        rec.save(function(error, data){
+            if(error){
+                console.log('Error inserting data '+error)
+            }
+            else{
+                console.log(data)
+                console.log('Inserted ')
+                res.redirect("/single?q=" + req.param("title") + "&t=title");
+
+            }
+        });
+        res.redirect("/single?q=" + req.param("title") + "&t=title");
+
     })
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -263,7 +301,44 @@ module.exports = function (app, passport) {
         });
         res.send(req.body);
 
-    })
+    })//Single View Search Query
+    app.get('/single', function (req, res) {
+        var q = req.query['q']
+            , f = req.query['t']
+        Book.find({ title: new RegExp(q, "i")}).exec(function (err, resu) {
+            var result = [];
+            var j = 0
+
+            /** THIS IS THE CODE FOR NO AWS QUERIES
+             **/
+            for (var i in resu) {
+                var descr = resu[i]['desc'];
+                var image = resu[i]['image'];
+                if (!descr) {
+                    descr = "Description for this book is not available yet";
+                }
+                if (!image) {
+                    image = "http://dolong.ca/placeholder.jpg";
+                }
+                //image = "http://dolong.ca/placeholder.jpg";
+                result.push({
+                    'title': resu[i]['title'],
+                    '_id': resu[i]['_id'],
+                    'desc': descr,
+                    'date': resu[i]['date'],
+                    'author': resu[i]['author'],
+                    'amazon': resu[i]['amazon'],
+                    'image': resu[i]['image']
+                })
+                j++
+            }
+            res.render('./app/single.ejs', {
+                user: req.user,
+                res: result
+            });
+        })
+    });
+
     //Search Query
     app.get('/search', function (req, res) {
         var q = req.query['q']
@@ -299,79 +374,6 @@ module.exports = function (app, passport) {
                 user: req.user,
                 res: result
             });
-
-            /** THIS IS THE CODE FOR AWS QUERIES
-             for (var i in resu)
-             {
-                 var descr = resu[i]['descr'];
-                 var image = resu[i]['image'];
-                 var newDate = resu[i]['date'].toDateString()
-                 // if no descr, grab from server
-                 if ( !descr ) {
-                     descr = "Description for this book is not available yet";
-                     image = "http://dolong.ca/placeholder.jpg";
-
-                     var myVar;
-
-                     function myFunction() {
-                         myVar = setTimeout(function(){
-                         // after 1 second push th is if no response
-                         result.push({ 'title' : resu[i]['title'], 'desc' : descr, 'date' : resu[i]['date'] , 'author' : resu[i]['author'], 'amazon' : resu[i]['amazon'], 'image' : image  })
-
-                         // if everything is in result, res.send
-                         if (result.length === resu.length) res.render('search', { title: 'Search', appName: 'SearchApp' , res: result})
-                         }, 1000)
-
-                         //This function executes but times out in 1 second
-                         prodAdv.call("ItemSearch", {SearchIndex: "Books", Title: resu[i]['title'], Author : resu[i]['author'], ResponseGroup : "Medium", ItemPage : "1"}, function( err, re) {
-                             var item = re.ItemSearchResponse.Items[0].Item[0]
-                             descr = (item.EditorialReviews[0].EditorialReview[0].Content[0])
-                             image = (item.MediumImage[0].URL[0])
-                             title = item.ItemAttributes[0].Title[0]
-                             author= item.ItemAttributes[0].Author[0]
-                             date=item.ItemAttributes[0].ReleaseDate[0]
-                             amazon= (item.DetailPageURL[0]);
-                             // after descr and image have the new values, push it to result
-                             result.push({ 'title' : title, 'desc' : descr, 'date' : date , 'author' : author, 'amazon' : amazon, 'image' : image  })
-
-                             // if everything is in result, res.send
-                             if (result.length === resu.length) {
-                                 res.render('./app/search.ejs', {
-                                     user : req.user,
-                                     res : result
-                                 });
-                             }
-
-                             //stops the timeout since we have the output
-                             myStopFunction();
-                         })
-                     }
-
-                     function myStopFunction() {
-                         clearTimeout(myVar);
-                     }
-
-                     //time to query amazon
-                     myFunction();
-
-                 // if there is a descr, push it to result
-             } else {
-                     result.push({ 'title' : resu[i]['title'], 'desc' : descr, 'date' : resu[i]['date'] , 'author' : resu[i]['author'], 'amazon' : resu[i]['amazon'], 'image' : image  })
-
-                     // if everything is in result, res.send
-                     if (result.length === resu.length) {
-                         res.render('./app/search.ejs', {
-                             user : req.user,
-                             res : result
-                         });
-                     }
-             }
-
-
-
- }
-             **/
-
         })
     });
 // =============================================================================
