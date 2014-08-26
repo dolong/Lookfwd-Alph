@@ -4613,7 +4613,6 @@ body.fourofour .fourofour-container a.btn:hover {
 .feature-search {
     float: right;
 }
-
 #left-col-browse p {
     margin-bottom: 15px;
     font-weight: 400;
@@ -4624,7 +4623,22 @@ body.fourofour .fourofour-container a.btn:hover {
     font-weight: 400;
     color: #9B9B9B;
 }
+#right-col-browse {
+}
+#right-col-browse .featuredItem {
+    position: fixed;
+    float: right;
+}
+#right-col-browse p {
+    margin-bottom: 15px;
+    font-weight: 400;
+    padding: 0px;
+}
 
+#right-col-browse h4 {
+    font-weight: 400;
+    color: #9B9B9B;
+}
 input.search-large {
     height: 48px;
     padding: 6px 24px;

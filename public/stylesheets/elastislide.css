@@ -79,6 +79,7 @@
 
 .elastislide-carousel ul li img {
     height: 205px;
+    float:left;
 }
 .elastislide-carousel ul li a img {
 	display: block;
