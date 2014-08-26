@@ -77,6 +77,9 @@
 	width: 100%;
 }
 
+.elastislide-carousel ul li img {
+    height: 205px;
+}
 .elastislide-carousel ul li a img {
 	display: block;
 	max-width: 100%;
