@@ -27,7 +27,7 @@ body {
     font-family: "Lato", sans-serif !important;
     color: #666666;
     background: #e8e8e8;
-    padding-top: 140px;
+    padding-top: 60px;
     min-height: 100%;
     overflow-x: hidden;
 }
@@ -164,7 +164,6 @@ dl dd {
 /*----------------------------------------------------------------------------------- */
 body.login1 {
     padding: 0;
-    background: url(../images/login-blurry-bg.jpg) no-repeat center center;
     background-size: cover;
     position: relative;
 }
@@ -377,17 +376,18 @@ body.login2 .login-wrapper .social-login .twitter:hover {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     padding: 0;
     min-height: 45px;
-    height: 112px;
+    //height: 112px;
     width: 100%;
     border: 0;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
+    z-index: 10;
 }
 
 .navbar .container-fluid.top-bar {
     height: 46px;
-    border-bottom: 1px solid #e6e6e6;
+    /border-bottom: 1px solid #e6e6e6;
     padding: 0 10px 0 20px;
     width: 100%;
     float: left;
@@ -2677,6 +2677,13 @@ input[type="text"] {
     margin-bottom: 5px;
 }
 
+.input-group-btn {
+    position: relative;
+    white-space: nowrap;
+    width: 445px;
+    margin: 0 auto;
+    display: block;
+}
 .input-group-btn > .btn {
     margin-left: -1px;
 }
@@ -4442,12 +4449,12 @@ body.fourofour .fourofour-container a.btn:hover {
 }
 
 .ajaxsubmit {
-    width: 100%;
+    width: 165px;
     float: left;
 }
 
 .ajaxsubmit .btn {
-    width: 200px !important;
+    width: 165px !important;
     float: left;
 }
 
@@ -4482,7 +4489,6 @@ body.fourofour .fourofour-container a.btn:hover {
     width: 100%;
     float: left;
     margin-bottom: 8px;
-    background: #fff;
 }
 
 .movie h3 {
@@ -4518,7 +4524,13 @@ body.fourofour .fourofour-container a.btn:hover {
 .movie p {
     margin-bottom: 0px;
 }
-
+.singleInfo {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background: #fff;
+}
 .movie .info {
     float: left;
     text-align: left;
@@ -4531,8 +4543,8 @@ body.fourofour .fourofour-container a.btn:hover {
 }
 
 .mov-thumbnail {
-    width: 20%;
     float: left;
+    width: 120px;
 }
 
 .mov-top {
@@ -4555,7 +4567,10 @@ body.fourofour .fourofour-container a.btn:hover {
     padding-left: 15px;
     border-top: 1px solid #e8e8e8;
 }
-
+.calendar {
+    float: left;
+    width: 165px;
+}
 #hero-area {
     float: left;
 }
@@ -4586,11 +4601,19 @@ body.fourofour .fourofour-container a.btn:hover {
 }
 
 .feature-search {
-    float: right;
-}
+    float: right;}
 
+#left-col-browse p {
+    margin-bottom: 15px;
+    font-weight: 400;
+    padding: 0px;
+}
+#left-col-browse h4 {
+    font-weight: 400;
+    color: #9B9B9B;
+}
 input.search-large {
-    height: 50px;
+    height: 48px;
     padding: 6px 24px;
     text-align: center;
     font-size: 17px;
@@ -4606,7 +4629,6 @@ input.search-large {
 
 @media (max-width: 768px) {
     .movie .info {
-        padding-left: 5%;
     }
 
     input.search-large {
@@ -4616,8 +4638,7 @@ input.search-large {
 
 .input-group {
     border-collapse: separate;
-/ width : 400 px;
-/ display : inline;
+    margin: 0 auto;
 }
 
 .search-main {
@@ -4678,8 +4699,8 @@ input.search-large {
 }
 
 .featuredWidget {
-    width: 120px !important;
-    max-width: 120px;
+    width: 170px !important;
+    max-width: 170px;
 }
 
 #featured-bg {
@@ -4692,37 +4713,48 @@ input.search-large {
     position: relative;
     float: right;
 }
-
-.featuredItem1 {
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    padding-right: 900px;
-    padding-top: 30px;
+.featuredNew-thumbnail {
+    float: left;
+    width: auto;
+    background: #808080;
+    height: 238px;
+    border-radius: 4px;
+    overflow: hidden;
 }
-
-.featuredItem2 {
-    position: absolute;
-    z-index: 10;
+.details {
     width: 100%;
-    padding-right: 700px;
-    padding-top: 30px;
+    float: left;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
 }
-
-.featuredItem3 {
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    padding-right: 500px;
-    padding-top: 30px;
+.left-col {
+    position: fixed;
+    max-width: 165px;
 }
+.left-sized {
+    width: 165px;
+    float:left;
 
-.featuredItem4 {
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    padding-right: 300px;
-    padding-top: 30px;
+    border-bottom: 1px solid lightgray;
+}
+hr {
+    border: 1px solid #E0E0E0;
+}
+.details p {
+    margin-bottom: 0px;
+}
+.featuredNew {
+    float: left;
+    margin-bottom: 8px;
+}
+.featuredItem {
+    float: left;
+    margin-right: 15px;
+}
+.featurelast {
+    float: left;
 }
 
 @media (max-width: 1050px) {

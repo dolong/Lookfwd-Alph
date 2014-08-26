@@ -1,9 +1,6 @@
- <div class="container-fluid main-nav clearfix">
-          <div class="nav-collapse">
-            <ul class="nav">
-			   <div>
+ <div class="clearfix fullwidth" style="margin-top: -14px;background-color: #fff;">
 					<div class="input-group">
-					  <span class="input-group-btn">
+					  <div class="input-group-btn" >
 						<input class="search-large" placeholder="Search Titles" id="searchForm" type="text">
 						<input type="hidden" id="type" value="title">
 						<button class="btn dropdown-toggle" data-toggle="dropdown" type="button" style="
@@ -22,11 +19,8 @@
 							border-bottom-left-radius: 0;  border-top-left-radius: 0;  };
 						">Go</button>
 					</div>
-				</div>
-				  
-            </ul>
-		  </div>
-		</div>
+                    </div>
+ </div>
 			  <script>
 			  $('#searchForm').autocomplete(
 {
@@ -39,7 +33,7 @@
             dataType: "json",
             data:
             {
-                term: request.term,
+                term: request.term
             },
             success: function (data)
             {

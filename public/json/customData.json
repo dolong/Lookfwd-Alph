@@ -1,0 +1,16 @@
+{
+    "items" : [
+        {
+            "img": "http://cdn3.whatculture.com/wp-content/uploads/2013/11/untitledothers1.jpg",
+            "alt" : "Owl Image 1"
+        },
+        {
+            "img": "http://cdn3.whatculture.com/wp-content/uploads/2013/11/untitledothers1.jpg",
+            "alt" : "Owl Image 2"
+        },
+        {
+            "img": "http://cdn3.whatculture.com/wp-content/uploads/2013/11/untitledothers1.jpg",
+            "alt" : "Owl Image 3"
+        }
+    ]
+}

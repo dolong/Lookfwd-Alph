@@ -1,101 +1,183 @@
 <!DOCTYPE html>
 <html>
-<% include head.ejs %> 
+<% include head.ejs %>
     <body>
     <div class="modal-shiftfix">
-      <% include header %>  			  
+      <% include header %>
 			<div class="container-fluid main-content">
-				<% include featuredBanner %>  	
-				  <!-- Start of Movies -->
-				<div class="col-md-6 section" id="mov">
-					<div class="widget-container mov fluid-height fullwidth">
-					  <div class="heading">
-						<i class="icon-film"></i><p>Hot Upcoming Books</p>
-					  </div>
-					</div>
-					  <div class="movie widget-content text-center" id="book1">
-						<div class="mov-thumbnail">
-							<img src="http://www.brentweeks.com/news/wp-content/uploads/2013/08/The-Broken-Eye-HC.jpg">
-						</div>
-						<div class="info">
-							<h1>The Broken Eye</h1>
-							<p>Brent Weeks</p>
-							<h3>Release Date: 2014-08-14</h3>
-							<p>As the old gods awaken and satrapies splinter, the Chromeria races to find its lost Prism, the only man who may be able to stop catastrophe. But Gavin Guile is enslaved on a pirate galley. Worse, Gavin no longer has the one thing that defined him -- the ability to draft...</p>
-						</div>
-						<div class="mov-top"></div>
-						<div class="mov-bottom">
-							<i class="icon-bell"></i>
-							<a href="#">2014-08-14</a>
-						</div>
-					  </div>
-					  <div class="movie widget-content text-center" id="book2">
-						<div class="mov-thumbnail">
-							<img src="http://levgrossman.com/wp-content/uploads/2013/11/640.jpeg">
-						</div>
-						<div class="info">
-							<h1>The Magician's Land: A Novel (Magicians Trilogy)</h1>
-							<p>Lev Grossman</p>
-							<h3>Release Date: 2014-05-08</h3>
-							<p>In The Magician's Land, the stunning conclusion to the New York Times bestselling Magicians trilogy-on-sale from Viking on August 5-Quentin Coldwater has been cast out of Fillory...</p></div>
-							<div class="mov-top"></div>
-							<div class="mov-bottom">
-							<i class="icon-bell"></i>
-							<a href="#">2014-05-08</a>
-						</div>
-					  </div>
-				  </div>
-				  <!-- End of Movies -->
-				  
-				  <!-- Start of Books -->
-				  <div class="col-md-6 section" id="books">
-					<div class="widget-container fluid-height fullwidth">
-					  <div class="heading">
-						<i class="icon-book"></i>
-						<p>Most Searched Books</p>						
-					  </div>					
-					</div>	
-					<div class="movie widget-content text-center" id="book1">
-						<div class="mov-thumbnail">
-							<img src="http://dolong.ca/placeholder.jpg">
-						</div>
-						<div class="info">
-							<h1>The Doors of Stone (King Killer #3)</h1>
-							<p>Patrick Rothfuss</p>
-							<h3>Release Date: TBA</h3>
-							<p>The third book in the King Killer trilogy.</p></div>
-							<div class="mov-top"></div>
-							<div class="mov-bottom">
-							<i class="icon-bell"></i>
-							<a href="#">Sign up to get notified when we have a date!</a>
-						</div>
-					  </div>
-					  <div class="movie widget-content text-center" id="book2">
-						<div class="mov-thumbnail">
-							<img src="http://dolong.ca/placeholder.jpg">
-						</div>
-						<div class="info">
-							<h1>Stones Unhallowed (The Stormlight Archive #3)</h1>
-							<p>Brandon Sanderson</p>
-							<h3>Release Date: 2014-05-08</h3>
-							<p>The third in the projected 10 book series, which has been announced as Szeth's book, as it will contain his flashbacks.</p></div>
-							<div class="mov-top"></div>
-							<div class="mov-bottom">
-							<i class="icon-bell"></i>
-							<a href="#">2014-05-08</a>
-						</div>
-					  </div>					
-				  </div>
-				  
-				  <!-- Start of Books -->
-				  <div class="col-md-8 section" id="book-results">
-					<div class="widget-container fluid-height fullwidth">
-					  <div class="heading">
-						<i class="icon-book"></i>
-						<p>Book Results</p>						
-					  </div>					
-					</div>
-				  </div>
+
+
+            <% include leftmenu %>
+                <div class="col-md-8 section">
+                    <h4 style="font-size:15px;font-weight: 400">Discover</h4>
+
+				    <% include featuredBanner %>
+                    <div class="fullwidth featuredFloat">
+                        <hr/>
+                        <h4 style="font-size:15px;font-weight: 400">Winter is coming!</h4>
+
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                            <div class="featuredFloat">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://airherald.com/wp-content/uploads/2014/06/Winds-Of-Winter-Release-Date.jpg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">The Winds of W..</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
+                                        <a class="showOptions" href="#">7/10/2015</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://www.georgerrmartin.com/wp-content/uploads/2014/03/World-of-Ice-and-Fire-jkt-ElioLinda-1.jpg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">The World of Ice..</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
+                                        <a class="showOptions" href="#">1/10/2015</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://www.georgerrmartin.com/wp-content/uploads/2014/06/old-venus.jpg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">Old Venus</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
+                                        <a class="showOptions" href="#">1/10/2015</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://www.georgerrmartin.com/wp-content/uploads/2014/06/icedragon-2014_big.jpg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">The Ice Dragon</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
+                                        <a class="showOptions" href="#">1/10/2015</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fullwidth featuredFloat">
+                        <hr/>
+                        <h4  id="hot" style="font-size:15px;font-weight: 400">Whats hot!</h4>
+
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredFloat">
+                                    <div class="featuredNew widget-content text-center featuredWidget" >
+                                        <div class="featuredNew-thumbnail" style="width: auto;">
+                                            <img style="max-width:160px;width:160px;" src="http://www.brentweeks.com/news/wp-content/uploads/2013/08/The-Broken-Eye-HC.jpg">
+                                        </div>
+                                        <div class="details" style="padding-left: 5px;">
+                                            <p style="white-space: pre;">The Broken Eye</p>
+                                            <p style="white-space: pre;font-size:12px;color:#808080;">Brent Weeks</p>
+                                            <a class="showOptions" href="#">2014-08-14</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://levgrossman.com/wp-content/uploads/2013/11/640.jpeg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">The Magician's La..</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">Lev Grossman</p>
+                                        <a class="showOptions" href="#">2014-05-08</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://dolong.ca/placeholder.jpg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">The Doors of Stone</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">Patrick Rothfuss</p>
+                                        <a class="showOptions" href="#">TBA</a>
+                                        <a class="showOptions" href="#">Create an Account to track</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://dolong.ca/placeholder.jpg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">Stones Unhallo..</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">Brandon Sanderson</p>
+                                        <a class="showOptions" href="#">2014-05-08</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featuredItem">
+                            <div style="float: left;">
+                                <div class="featuredNew widget-content text-center featuredWidget" >
+                                    <div class="featuredNew-thumbnail" style="width: auto;">
+                                        <img style="max-width:160px;width:160px;" src="http://dolong.ca/placeholder.jpg">
+                                    </div>
+                                    <div class="details" style="padding-left: 5px;">
+                                        <p style="white-space: pre;">Firefight</p>
+                                        <p style="white-space: pre;font-size:12px;color:#808080;">Brandon Sanderson</p>
+                                        <a class="showOptions" href="#">2015-01-06</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2 section hidden-xs hidden-sm" id="left-col-browse">
+                    <h4>New Books Today</h4>
+
+                    <div class="featuredItem">
+                        <div style="float: left;">
+                            <div class="featuredNew widget-content text-center featuredWidget">
+                                <div class="featuredNew-thumbnail" style="width: auto;">
+                                    <img style="max-width:160px;width:160px;"
+                                         src="https://d.gr-assets.com/books/1375573023l/13206900.jpg">
+                                </div>
+                                <div class="details" style="padding-left: 5px;">
+                                    <p style="white-space: pre;">Winter</p>
+
+                                    <p style="white-space: pre;font-size:12px;color:#808080;">Marissa Meyer</p>
+                                    <a class="showOptions" href="#">2014-02-25</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		<% include footer %> 
 	</div>

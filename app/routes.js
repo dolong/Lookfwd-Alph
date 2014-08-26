@@ -1,5 +1,6 @@
 var Book = require('../app/models/book');
 var aws = require("../node_scripts/lib/aws");
+var moment = require("../node_modules/moment");
 var Notification = require('../app/models/notification');
 prodAdv = aws.createProdAdvClient("AKIAJDVV35I45ACW26CQ", "gWjMmaUq5i6h2SZ/70DErKsmwzwK1waWhPashA6t", "lookfwd-20");
 
@@ -229,7 +230,6 @@ module.exports = function (app, passport) {
                     pg: page,
                     c: c
                 });
-
             });
         });
     });
@@ -305,45 +305,7 @@ module.exports = function (app, passport) {
     app.get('/single', function (req, res) {
         var q = req.query['q']
             , f = req.query['t']
-        Book.find({ title: new RegExp(q, "i")}).exec(function (err, resu) {
-            var result = [];
-            var j = 0
-
-            /** THIS IS THE CODE FOR NO AWS QUERIES
-             **/
-            for (var i in resu) {
-                var descr = resu[i]['desc'];
-                var image = resu[i]['image'];
-                if (!descr) {
-                    descr = "Description for this book is not available yet";
-                }
-                if (!image) {
-                    image = "http://dolong.ca/placeholder.jpg";
-                }
-                //image = "http://dolong.ca/placeholder.jpg";
-                result.push({
-                    'title': resu[i]['title'],
-                    '_id': resu[i]['_id'],
-                    'desc': descr,
-                    'date': resu[i]['date'],
-                    'author': resu[i]['author'],
-                    'amazon': resu[i]['amazon'],
-                    'image': resu[i]['image']
-                })
-                j++
-            }
-            res.render('./app/single.ejs', {
-                user: req.user,
-                res: result
-            });
-        })
-    });
-
-    //Search Query
-    app.get('/search', function (req, res) {
-        var q = req.query['q']
-            , f = req.query['t']
-        Book.find({ title: new RegExp(q, "i")}).exec(function (err, resu) {
+        Book.find({ title: new RegExp(q, "i")}).limit(5).exec(function (err, resu) {
             var result = [];
             var j = 0
 
@@ -370,9 +332,69 @@ module.exports = function (app, passport) {
                 })
                 j++
             }
-            res.render('./app/search.ejs', {
+            res.render('./app/single.ejs', {
                 user: req.user,
                 res: result
+            });
+        })
+    });
+
+    //Search Query
+    app.get('/search', function (req, res) {
+        var q = ""
+        var p = req.query['p']
+        q = req.query['q']
+            , f = req.query['t']
+        if (!q)
+            q = "";
+        if (!p)
+            res.redirect('/search?p=1&q='+q);
+        //var p = new RegExp(q, "i")
+        var show = 0
+        var page = 1
+        var page = parseInt(p)
+        show = (page - 1) * 10
+        Book.find({ title: new RegExp(q, "i")}).skip(show).limit(10).exec(function (err, resu) {
+            var result = [];
+            var j = 0
+
+            /** THIS IS THE CODE FOR NO AWS QUERIES
+             **/
+            for (var i in resu) {
+                var descr = resu[i]['desc'];
+                var image = resu[i]['image'];
+                if (!descr) {
+                    descr = "Description for this book is not available yet";
+                }
+                if (!image) {
+                    image = "http://dolong.ca/placeholder.jpg";
+                }
+                var  date = resu[i]['date']
+                if (date) {
+                    var fomatted_date = moment(date).format('DD-MM-YYYY');
+                }
+                //image = "http://dolong.ca/placeholder.jpg";
+                result.push({
+                    'title': resu[i]['title'],
+                    '_id': resu[i]['_id'],
+                    'desc': descr,
+                    'date': fomatted_date,
+                    'author': resu[i]['author'],
+                    'amazon': resu[i]['amazon'],
+                    'image': image
+                })
+                j++
+            }
+
+
+            var count =  Book.count({ title: new RegExp(q, "i")}, function(err, c) {
+                res.render('./app/search.ejs', {
+                    user: req.user,
+                    res: result,
+                    pg: page,
+                    c: c,
+                    q: q
+                });
             });
         })
     });

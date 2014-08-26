@@ -7,6 +7,7 @@ var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
+var moment = require('moment');
 var flash    = require('connect-flash');
 
 var xml2js = require("xml2js")
@@ -31,6 +32,7 @@ require('./app/models/book');
 require('./app/models/notification');
 
 // set up our express application
+app.use(moment); // log every request to the console
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms

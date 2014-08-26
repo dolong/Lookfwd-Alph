@@ -52,11 +52,10 @@
     </script>
 </div>
 
-<div class="col-md-11 section" id="book-results" style="display: block;">
+
+    <% include leftmenu %>
+<div class="col-md-8 section" id="book-results" style="display: block;">
     <div class="widget-container mov fluid-height fullwidth">
-        <div class="heading">
-            <p>Search Results</p>
-        </div>
     </div>
     <% for(var i = 0; i < res.length; i++) { %>
     <div class="movie widget-content text-center" id="book<%= i %>">
@@ -79,24 +78,10 @@
                 </a>
                 <% } %>
                 <p class="fullwidth" style="float:left;">&nbsp;
-                <a href="http://lookfwd.info" title="Add to Calendar" class="addthisevent" style="
-                        float: left;
-                        margin-left: 5px;
-                        margin-bottom: 5px;
-                    ">
-                    Add to Calendar
-                    <span class="_start" style="display: none;"><%= res[i]['date'] %></span>
-                    <span class="_end" style="display: none;"><%= res[i]['date'] %></span>
-                    <span class="_summary" style="display: none;"><%= res[i]['title'] %> is out! </span>
-                    <span class="_description"
-                          style="display: none;">The book is out! <br>Amazon Link: <%= res[i]['amazon'] %></span>
-                        <span class="_organizer" style="display: none;">Lookfwd</span>
-                        <span class="_date_format" style="display: none;">DD/MM/YYYY</span>
-                    </a>
                 </p>
             </div>
         </div>
-        <div class="info">
+        <div class="singleInfo info">
             <h1>
                 <%= res[i]['title'] %>
             </h1>
@@ -108,61 +93,44 @@
             <h3>
                 Release Date: <%= res[i]['date'] %>
             </h3>
-
+            <hr/>
             <p style="padding-bottom: 20px;">
                 <%= res[i]['desc'].toString().replace(/<(?:.|\n)*?>/gm, '') %>
             </p>
             <!--
                     -->
-        </div>
-        <div class="addlook" style="display: block;">
-            <div class="calendar">
-                <form class="ajaxsubmit" style="float:left;width:100%;" action="/search" method="post">
-                    <input name="image" class="hidden form-control" type="text"
-                           value="<%= res[i]['image'] %>">
-                    <input name="bookID" class="hidden form-control" type="text"
-                           value="<%= res[i]['_id'] %>">
-                    <input name="title" class="hidden form-control" type="text"
-                           value="<%= res[i]['title'] %>">
-                    <input name="date" class="hidden form-control" type="text"
-                           value="<%= res[i]['date'] %>">
-                    <input name="author" class="hidden form-control" type="text"
-                           value="<%= res[i]['author'] %>">
+            <form class="ajaxsubmit" style="float:left;width:100%;" action="/search" method="post">
+                <input name="image" class="hidden form-control" type="text"
+                       value="<%= res[i]['image'] %>">
+                <input name="bookID" class="hidden form-control" type="text"
+                       value="<%= res[i]['_id'] %>">
+                <input name="title" class="hidden form-control" type="text"
+                       value="<%= res[i]['title'] %>">
+                <input name="date" class="hidden form-control" type="text"
+                       value="<%= res[i]['date'] %>">
+                <input name="author" class="hidden form-control" type="text"
+                       value="<%= res[i]['author'] %>">
 
-                    <div class="platform">
-                        <input name="platforms" class="form-control" type="checkbox" checked disabled>
-                        <span>Notify me via Lookfwd</span>
-                    </div>
-                    <div class="platform">
-                        <input name="platforms" class="form-control" type="checkbox" value="Mobile">
-                        <span>Notify me via Mobile App</span>
-                    </div>
-                    <div class="platform">
-                        <input name="platforms" class="form-control" type="checkbox" value="E-Mail">
-                        <span>Notify me via email</span>
-                    </div>
-                    <br/>
-                    <br/>
-                    <input name="user" class="hidden form-control" type="text" value="Guest">
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Add to Lookfwd">
-                </form>
-            </div>
-        </div>
-        <div class="mov-top">
-            <div class="embedlink">
-                URL:
-                <input value="http://localhost:8080/single?q=test&t=title">
-            </div>
-            <div class="embedlink">
-                iframe:
-                <input value="http://localhost:8080/single?q=test&t=title">
-            </div>
-        </div>
-        <div class="mov-bottom">
-            <i class="icon-bell"></i>
-            <a class="showOptions" href="#">
-                Embed Options
-            </a>
+                <input name="user" class="hidden form-control" type="text" value="Guest">
+                <input class="btn btn-primary btn-block" type="submit" value="Add to Lookfwd">
+                <a href="http://lookfwd.info" title="Add to Calendar" class="addthisevent" style="
+                        float: left;
+                        margin-left: 5px;
+                        margin-bottom: 5px;
+                    ">
+                    Add to Calendar
+                    <span class="_start" style="display: none;"><%= res[i]['date'] %></span>
+                    <span class="_end" style="display: none;"><%= res[i]['date'] %></span>
+                    <span class="_summary" style="display: none;"><%= res[i]['title'] %> is out! </span>
+                    <span class="_description"
+                          style="display: none;">The book is out! <br>Amazon Link: <%= res[i]['amazon'] %></span>
+                    <span class="_organizer" style="display: none;">Lookfwd</span>
+                    <span class="_date_format" style="display: none;">DD/MM/YYYY</span>
+                </a>
+            </form>
+
+            <p class="fullwidth">&nbsp;</p>
+            <p class="fullwidth">&nbsp;</p>
         </div>
     </div>
     <% } %>
