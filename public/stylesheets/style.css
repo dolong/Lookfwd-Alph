@@ -4535,7 +4535,7 @@ body.fourofour .fourofour-container a.btn:hover {
     float: left;
     text-align: left;
     width: 75%;
-    padding-right: 5%;
+    margin-bottom: 20px;
 }
 
 .movie .info a {
