@@ -31,10 +31,12 @@ body {
     min-height: 100%;
     overflow-x: hidden;
 }
+
 @media (max-width: 768px) {
-.main-content {
-    padding-bottom: 20px;
-}}
+    .main-content {
+        padding-bottom: 20px;
+    }
+}
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -376,7 +378,7 @@ body.login2 .login-wrapper .social-login .twitter:hover {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     padding: 0;
     min-height: 45px;
-    //height: 112px;
+/ / height : 112 px;
     width: 100%;
     border: 0;
     -webkit-transition: all 0.3s;
@@ -387,7 +389,7 @@ body.login2 .login-wrapper .social-login .twitter:hover {
 
 .navbar .container-fluid.top-bar {
     height: 46px;
-    /border-bottom: 1px solid #e6e6e6;
+/ border-bottom : 1 px solid #e6e6e6;
     padding: 0 10px 0 20px;
     width: 100%;
     float: left;
@@ -2684,6 +2686,7 @@ input[type="text"] {
     margin: 0 auto;
     display: block;
 }
+
 .input-group-btn > .btn {
     margin-left: -1px;
 }
@@ -4470,9 +4473,10 @@ body.fourofour .fourofour-container a.btn:hover {
     float: left;
 }
 
-.ajaxsubmit .platform p{
+.ajaxsubmit .platform p {
     float: left;
 }
+
 .categorydd {
     background: none !important;
     padding-top: 0px;
@@ -4482,9 +4486,11 @@ body.fourofour .fourofour-container a.btn:hover {
 .widget-container.fluid-height {
     float: left;
 }
+
 .imgNotifications {
     max-width: 100px;
 }
+
 .movie {
     width: 100%;
     float: left;
@@ -4524,6 +4530,7 @@ body.fourofour .fourofour-container a.btn:hover {
 .movie p {
     margin-bottom: 0px;
 }
+
 .singleInfo {
     margin-left: 20px;
     margin-right: 20px;
@@ -4531,6 +4538,7 @@ body.fourofour .fourofour-container a.btn:hover {
     padding-left: 40px;
     background: #fff;
 }
+
 .movie .info {
     float: left;
     text-align: left;
@@ -4567,10 +4575,12 @@ body.fourofour .fourofour-container a.btn:hover {
     padding-left: 15px;
     border-top: 1px solid #e8e8e8;
 }
+
 .calendar {
     float: left;
     width: 165px;
 }
+
 #hero-area {
     float: left;
 }
@@ -4601,17 +4611,20 @@ body.fourofour .fourofour-container a.btn:hover {
 }
 
 .feature-search {
-    float: right;}
+    float: right;
+}
 
 #left-col-browse p {
     margin-bottom: 15px;
     font-weight: 400;
     padding: 0px;
 }
+
 #left-col-browse h4 {
     font-weight: 400;
     color: #9B9B9B;
 }
+
 input.search-large {
     height: 48px;
     padding: 6px 24px;
@@ -4627,10 +4640,47 @@ input.search-large {
     margin: 8px;
 }
 
+.nav-search-left {
+    margin-left: 47px;
+    border-left: 1px solid #DAD7D7;
+    padding-left: 25px;
+}
+
+.nav-search-left #searchForm {
+    height: 24px;
+    width: 100%;
+    padding: 0 12px 0 25px;
+    background: white url("http://s3.cssflow.com/snippets/10-search-dropdown/img/search.png") 8px 6px no-repeat;
+    border: 1px solid;
+    border-color: #a8acbc #babdcc #c0c3d2;
+    border-radius: 13px;
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: inset 0 1px #e5e7ed, 0 1px #fcfcfc;
+    box-shadow: inset 0 1px #e5e7ed, 0 1px #fcfcfc;
+
+}
+
 @media (max-width: 768px) {
+    .nav-search-left #searchForm {
+
+    }
+    .nav-search-left {
+        margin-left: 20px;
+        border-left: none;
+        padding-left: 0px;
+    }
+
     .movie .info {
         width: 60%;
     }
+
+    .featuredItem {
+        margin-right: 5px;
+    }
+
     .singleInfo {
         margin-left: 0px;
         margin-right: 0px;
@@ -4638,6 +4688,7 @@ input.search-large {
         padding-left: 5px;
         background: #fff;
     }
+
     input.search-large {
         width: 300px;
     }
@@ -4659,9 +4710,11 @@ input.search-large {
 #book-results {
     display: none;
 }
+
 .amazonlink img {
     margin-left: 10px;
 }
+
 .emailNotification {
 
     display: inline-block;
@@ -4682,13 +4735,16 @@ input.search-large {
 .platform {
     text-align: left;
 }
+
 .addlook {
     padding-left: 20px;
 }
+
 .embedlink {
-    float:left;
-    padding-right:10px;
+    float: left;
+    padding-right: 10px;
 }
+
 .amazon-link {
     border: 1px solid grey;
 }
@@ -4720,6 +4776,7 @@ input.search-large {
     position: relative;
     float: right;
 }
+
 .featuredNew-thumbnail {
     float: left;
     width: auto;
@@ -4728,6 +4785,7 @@ input.search-large {
     border-radius: 4px;
     overflow: hidden;
 }
+
 .details {
     width: 100%;
     float: left;
@@ -4736,30 +4794,41 @@ input.search-large {
     padding-bottom: 5px;
     padding-left: 15px;
 }
+
 .left-col {
     position: fixed;
     max-width: 165px;
 }
+
+.left-col a {
+    color: slategrey;
+}
+
 .left-sized {
     width: 165px;
-    float:left;
+    float: left;
 
     border-bottom: 1px solid lightgray;
 }
+
 hr {
     border: 1px solid #E0E0E0;
 }
+
 .details p {
     margin-bottom: 0px;
 }
+
 .featuredNew {
     float: left;
     margin-bottom: 8px;
 }
+
 .featuredItem {
     float: left;
     margin-right: 15px;
 }
+
 .featurelast {
     float: left;
 }

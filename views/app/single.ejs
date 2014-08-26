@@ -91,7 +91,12 @@
             </p>
 
             <h3>
-                Release Date: <%= res[i]['date'] %>
+                <% var date =  (res[i]['date']); %>
+                <% if (date == "31-12-1969"){ %>
+                Released
+                <% } else { %>
+                Release Date: <%= date %>
+                <% } %>
             </h3>
             <hr/>
             <p style="padding-bottom: 20px;">

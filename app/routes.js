@@ -317,6 +317,10 @@ module.exports = function (app, passport) {
                 if (!descr) {
                     descr = "Description for this book is not available yet";
                 }
+                var  date = resu[i]['date']
+                if (date) {
+                    var formatted_date = moment(date).format('DD-MM-YYYY');
+                }
                 if (!image) {
                     image = "http://dolong.ca/placeholder.jpg";
                 }
@@ -325,7 +329,7 @@ module.exports = function (app, passport) {
                     'title': resu[i]['title'],
                     '_id': resu[i]['_id'],
                     'desc': descr,
-                    'date': resu[i]['date'],
+                    'date': formatted_date,
                     'author': resu[i]['author'],
                     'amazon': resu[i]['amazon'],
                     'image': image
@@ -371,14 +375,14 @@ module.exports = function (app, passport) {
                 }
                 var  date = resu[i]['date']
                 if (date) {
-                    var fomatted_date = moment(date).format('DD-MM-YYYY');
+                    var formatted_date = moment(date).format('DD-MM-YYYY');
                 }
                 //image = "http://dolong.ca/placeholder.jpg";
                 result.push({
                     'title': resu[i]['title'],
                     '_id': resu[i]['_id'],
                     'desc': descr,
-                    'date': fomatted_date,
+                    'date': formatted_date,
                     'author': resu[i]['author'],
                     'amazon': resu[i]['amazon'],
                     'image': image

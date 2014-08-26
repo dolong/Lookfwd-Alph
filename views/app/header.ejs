@@ -1,20 +1,13 @@
 <!-- Navigation -->
 <div class="navbar navbar-fixed-top scroll-hide">
-        <form class="search hidden-xs" method="get"" action="search" style="
+        <form class="search " method="get"" action="search" style="
     position: absolute;
     margin-left: 105px;
     margin-top: 10px; width: 300px;
     };
 ">
-            <div style="
-    margin-left: 47px;
-    border-left: 1px solid #DAD7D7;
-    padding-left: 25px;
-    /* margin-top: 10px; */
-"><input type="search" id="searchForm" name="q" placeholder="" autocomplete="off" style="
-    height: 24px;  width: 100%;  padding: 0 12px 0 25px;
-    background: white url(&quot;http://s3.cssflow.com/snippets/10-search-dropdown/img/search.png&quot;) 8px 6px no-repeat;  border: 1px solid;  border-color: #a8acbc #babdcc #c0c3d2;  border-radius: 13px;  -webkit-appearance: textfield;  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;  -webkit-box-shadow: inset 0 1px #e5e7ed, 0 1px #fcfcfc;  box-shadow: inset 0 1px #e5e7ed, 0 1px #fcfcfc;
-" id="searchForm" type="text">
+            <div class="nav-search-left">
+                <input type="search" id="searchForm" name="q" placeholder="" autocomplete="off" style="" id="searchForm" type="text">
                 <input type="hidden" id="type" name="t" value="title">
                 <script>
                     $('#searchForm').autocomplete(
@@ -194,5 +187,5 @@
 
 </div>
 <!-- Search Function Here -->
-<% include searchbox.ejs %>
+<%// include searchbox.ejs %>
 <!-- End Navigation -->
