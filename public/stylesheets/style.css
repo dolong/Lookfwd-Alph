@@ -4624,6 +4624,8 @@ body.fourofour .fourofour-container a.btn:hover {
     color: #9B9B9B;
 }
 #right-col-browse {
+    margin: 0;
+    padding: 0;
 }
 #right-col-browse .featuredItem {
     position: fixed;
