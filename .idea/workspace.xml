@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5b31614c-1527-4752-bd3e-7b392bd66e3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="easy-node-authentication-local.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +59,8 @@
       <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48955917" vertical-offset="76918" max-vertical-offset="81872">
-              <caret line="4537" column="24" selection-start-line="4537" selection-start-column="24" selection-end-line="4537" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.3712297" vertical-offset="78567" max-vertical-offset="81889">
+              <caret line="4631" column="19" selection-start-line="4631" selection-start-column="19" selection-end-line="4631" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -1106,8 +1107,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48955917" vertical-offset="76918" max-vertical-offset="81872">
-          <caret line="4537" column="24" selection-start-line="4537" selection-start-column="24" selection-end-line="4537" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.3712297" vertical-offset="78567" max-vertical-offset="81889">
+          <caret line="4631" column="19" selection-start-line="4631" selection-start-column="19" selection-end-line="4631" selection-end-column="19" />
           <folding />
         </state>
       </provider>
