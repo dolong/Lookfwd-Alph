@@ -4631,7 +4631,13 @@ input.search-large {
     .movie .info {
         width: 60%;
     }
-
+    .singleInfo {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-right: 5px;
+        padding-left: 5px;
+        background: #fff;
+    }
     input.search-large {
         width: 300px;
     }
