@@ -4825,6 +4825,15 @@ hr {
 .featurelast {
     float: left;
 }
+.missing {
+    width: 120px;
+    margin-left: -20px;
+    float: left;
+    text-align: center;
+}
+.missing p {
+    padding: 5px;text-align: center;
+}
 .search {
     position: absolute;
     margin-left: 105px;

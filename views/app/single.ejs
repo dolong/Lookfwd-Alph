@@ -3,161 +3,138 @@
 <% include head.ejs %>
 <body>
 <div class="container-fluid main-content">
-<div class="modal-shiftfix">
-    <% include header %>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-        //This code temp changes .coms to .ca for amazon referral
-        $(document).ready(function () {
-            if (google.loader.ClientLocation) {
-                visitor_countrycode = google.loader.ClientLocation.address.country_code;
-                if (visitor_countrycode == "CA") {
-                    $('.amazonlinkus').hide();
-                } else {
-                    $('.amazonlinkca').hide();
+    <div class="modal-shiftfix">
+        <% include header %>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            //This code temp changes .coms to .ca for amazon referral
+            $(document).ready(function () {
+                if (google.loader.ClientLocation) {
+                    visitor_countrycode = google.loader.ClientLocation.address.country_code;
+                    if (visitor_countrycode == "CA") {
+                        $('.amazonlinkus').hide();
+                    } else {
+                        $('.amazonlinkca').hide();
+                    }
                 }
-            }
-        });
-    </script>
-    <script>
-        $(function () {
-            var frm = $('.ajaxsubmit');
-            $.each(frm, function (i, val) {
-                var k = i;
-                var indfrm = $("#book" + k + " .ajaxsubmit")
-                var indfrmbtn = $("#book" + k + " .ajaxsubmit .btn")
-                k++;
-                indfrm.submit(function (ev) {
-                    $.ajax({
-                        type: indfrm.attr('method'),
-                        url: indfrm.attr('action'),
-                        data: indfrm.serialize(),
-                        success: function (data) {
-                            indfrm.find($('.btn')).val("Added")
-                            indfrm.find($('.btn')).css("background-color", "#60c560");
-                            indfrm.find($('.btn')).css("color", "#fff");
-                        }
+            });
+        </script>
+        <script>
+            $(function () {
+                var frm = $('.ajaxsubmit');
+                $.each(frm, function (i, val) {
+                    var k = i;
+                    var indfrm = $("#book" + k + " .ajaxsubmit")
+                    var indfrmbtn = $("#book" + k + " .ajaxsubmit .btn")
+                    k++;
+                    indfrm.submit(function (ev) {
+                        $.ajax({
+                            type: indfrm.attr('method'),
+                            url: indfrm.attr('action'),
+                            data: indfrm.serialize(),
+                            success: function (data) {
+                                indfrm.find($('.btn')).val("Added")
+                                indfrm.find($('.btn')).css("background-color", "#60c560");
+                                indfrm.find($('.btn')).css("color", "#fff");
+                            }
+                        });
+                        ev.preventDefault();
                     });
-                    ev.preventDefault();
                 });
             });
-        });
-    </script>
-</div>
-
+        </script>
+    </div>
 
     <% include leftmenu %>
-<div class="col-md-8 section" id="book-results" style="display: block;">
-    <div class="widget-container mov fluid-height fullwidth">
-    </div>
-    <% for(var i = 0; i < res.length; i++) { %>
-    <div class="movie widget-content text-center" id="book<%= i %>">
-        <div class="mov-thumbnail">
-            <img src=<%= res[i]['image'] %>>
-            <div style="width: 100%;float: left;">
-                <% if (res[i]['amazon']) { %>
-                <span style="float: left;margin-top:20px;width:100%;text-align: left;">Get it from:</span>
-                <a class="amazonlinkus" href="<%= res[i]['amazon'] %>">
-                    <img width="30px" target="_blank" style="width: 70px;" class="amazon-link"
-                         src="http://www.inevents.org/bratislava/wp-content/uploads/sites/2/2013/09/amazon-logo.jpg">
-                </a>
-                <a class="amazonlinkca"
-                   href="<%= res[i]['amazon'].toString().replace('.com', '.ca').replace('lookfwd-20', 'lookfwd01-20') %>">
-                    <img target="_blank" style="width: 70px;" class="amazon-link"
-                         src="http://www.neema.ca/sites/neema/files/amazon_ca.gif">
-                </a>
-                <% } %>
-                <p class="fullwidth" style="float:left;">&nbsp;
-                </p>
-            </div>
+    <div class="col-md-8 section" id="book-results" style="display: block;">
+        <div class="widget-container mov fluid-height fullwidth">
         </div>
-        <div class="singleInfo info">
-            <h1>
-                <%= res[i]['title'] %>
-            </h1>
+        <% for(var i = 0; i < res.length; i++) { %>
+        <div class="movie widget-content text-center" id="book<%= i %>">
+            <div class="mov-thumbnail">
+                <img src=<%= res[i]['image'] %>>
 
-            <p>
-                <%= res[i]['author'] %>
-            </p>
+                <div style="width: 100%;float: left;">
+                    <% if (res[i]['amazon']) { %>
+                    <span style="float: left;margin-top:20px;width:100%;text-align: left;">Get it from:</span>
+                    <a class="amazonlinkus" href="<%= res[i]['amazon'] %>">
+                        <img width="30px" target="_blank" style="width: 70px;" class="amazon-link"
+                             src="http://www.inevents.org/bratislava/wp-content/uploads/sites/2/2013/09/amazon-logo.jpg">
+                    </a>
+                    <a class="amazonlinkca"
+                       href="<%= res[i]['amazon'].toString().replace('.com', '.ca').replace('lookfwd-20', 'lookfwd01-20') %>">
+                        <img target="_blank" style="width: 70px;" class="amazon-link"
+                             src="http://www.neema.ca/sites/neema/files/amazon_ca.gif">
+                    </a>
+                    <% } %>
+                    <p class="fullwidth" style="float:left;">&nbsp;
+                    </p>
+                </div>
+            </div>
+            <div class="singleInfo info">
+                <h1>
+                    <%= res[i]['title'] %>
+                </h1>
 
-            <h3>
-                <% var date =  (res[i]['date']); %>
-                <% if (date == "31-12-1969"){ %>
-                Release Date: Unavailable
-                <% } else { %>
-                Release Date: <%= date %>
-                <% } %>
-            </h3>
-            <hr/>
-            <p style="padding-bottom: 20px;">
-                <%= res[i]['desc'].toString().replace(/<(?:.|\n)*?>/gm, '') %>
-            </p>
-            <!-- Add to Lookfwd form -->
-            <form class="ajaxsubmit" style="float:left;width:100%;" action="/search" method="post">
-                <input name="image" class="hidden form-control" type="text"
-                       value="<%= res[i]['image'] %>">
-                <input name="bookID" class="hidden form-control" type="text"
-                       value="<%= res[i]['_id'] %>">
-                <input name="title" class="hidden form-control" type="text"
-                       value="<%= res[i]['title'] %>">
-                <input name="date" class="hidden form-control" type="text"
-                       value="<%= res[i]['date'] %>">
-                <input name="author" class="hidden form-control" type="text"
-                       value="<%= res[i]['author'] %>">
+                <p>
+                    <%= res[i]['author'] %>
+                </p>
 
-                <input name="user" class="hidden form-control" type="text" value="Guest">
-                <input class="btn btn-primary btn-block" type="submit" value="Add to Lookfwd">
-                <% if (res[i]['upcoming']) {%>
-                <a href="http://lookfwd.info" title="Add to Calendar" class="addthisevent" style="
+                <h3>
+                    <% var date = (res[i]['date']); %>
+                    <% if (date == "31-12-1969"){ %>
+                    Release Date: Unavailable
+                    <% } else { %>
+                    Release Date: <%= date %>
+                    <% } %>
+                </h3>
+                <hr/>
+                <p style="padding-bottom: 20px;">
+                    <%= res[i]['desc'].toString().replace(/<(?:.|\n)*?>/gm, '') %>
+                </p>
+                <!-- Add to Lookfwd form -->
+                <form class="ajaxsubmit" style="float:left;width:100%;" action="/search" method="post">
+                    <input name="image" class="hidden form-control" type="text"
+                           value="<%= res[i]['image'] %>">
+                    <input name="bookID" class="hidden form-control" type="text"
+                           value="<%= res[i]['_id'] %>">
+                    <input name="title" class="hidden form-control" type="text"
+                           value="<%= res[i]['title'] %>">
+                    <input name="date" class="hidden form-control" type="text"
+                           value="<%= res[i]['date'] %>">
+                    <input name="author" class="hidden form-control" type="text"
+                           value="<%= res[i]['author'] %>">
+
+                    <input name="user" class="hidden form-control" type="text" value="Guest">
+                    <input class="btn btn-primary btn-block" type="submit" value="Add to Lookfwd">
+                    <% if (res[i]['upcoming']) { %>
+                    <a href="http://lookfwd.info" title="Add to Calendar" class="addthisevent" style="
                         float: left;
                         margin-left: 5px;
                         margin-bottom: 5px;
                     ">
-                    Add to Calendar
-                    <span class="_start" style="display: none;"><%= res[i]['date'] %></span>
-                    <span class="_end" style="display: none;"><%= res[i]['date'] %></span>
-                    <span class="_summary" style="display: none;"><%= res[i]['title'] %> is out! </span>
+                        Add to Calendar
+                        <span class="_start" style="display: none;"><%= res[i]['date'] %></span>
+                        <span class="_end" style="display: none;"><%= res[i]['date'] %></span>
+                        <span class="_summary" style="display: none;"><%= res[i]['title'] %> is out! </span>
                     <span class="_description"
                           style="display: none;">The book is out! <br>Amazon Link: <%= res[i]['amazon'] %></span>
-                    <span class="_organizer" style="display: none;">Lookfwd</span>
-                    <span class="_date_format" style="display: none;">DD/MM/YYYY</span>
-                </a>
-                <% } %>
-            </form>
-            <!-- End of Add to Lookfwd form -->
+                        <span class="_organizer" style="display: none;">Lookfwd</span>
+                        <span class="_date_format" style="display: none;">DD/MM/YYYY</span>
+                    </a>
+                    <% } %>
+                </form>
+                <!-- End of Add to Lookfwd form -->
 
-            <p class="fullwidth">&nbsp;</p>
-            <p class="fullwidth">&nbsp;</p>
+                <p class="fullwidth">&nbsp;</p>
+
+                <p class="fullwidth">&nbsp;</p>
+            </div>
         </div>
-    </div>
-    <% } %>
-</div>
-
-
-<div class="col-md-1 section hidden-md hidden-sm hidden-print" style="display: block;overflow:hidden;min-width:120px;">
-    <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=lookfwd01-20&amp;o=15&amp;p=8&amp;l=as1&amp;asins=0345535529&amp;ref=tf_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr"
-            style="width: 119px;height:239px;top: -1px; left: -19px;position: relative;" scrolling="no" marginwidth="0"
-            marginheight="0" frameborder="0"></iframe>
-    <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=lookfwd01-20&amp;o=15&amp;p=8&amp;l=as1&amp;asins=0062345214&amp;ref=tf_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr"
-            style="width: 119px;  height: 238px;  top: 0px;  left: -19px;  position: relative;" scrolling="no"
-            marginwidth="0" marginheight="0" frameborder="0"></iframe>
-    <div style="background-color:#fff;width: 120px;margin-left: -20px;">
-        <p style="background-color:#fff;padding: 5px;text-align: center;">We are accepting donations to finance our
-            App</p>
-
-        <form style="background-color: #fff;padding-left: 0px;padding-bottom:10px;text-align: center;"
-              action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="6XSZTKUYJZG58">
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0"
-                   name="submit" alt="PayPal - The safer, easier way to pay online!" style="
-">
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </form>
+        <% } %>
     </div>
 
-</div>
-</div>
+    <% include rightmenu %>
 </div>
 
 <% include footer %>
