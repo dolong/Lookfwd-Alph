@@ -4825,8 +4825,17 @@ hr {
 .featurelast {
     float: left;
 }
-
+.search {
+    position: absolute;
+    margin-left: 105px;
+    margin-top: 10px;
+    width: 300px;
+}
 @media (max-width: 768px) {
+    .search {
+        margin-left: 55px;
+        width: 200px;
+    }
     iframe {
         display: none;
     }
