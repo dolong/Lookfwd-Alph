@@ -9,21 +9,14 @@
     <script type="text/javascript">
         //This code temp changes .coms to .ca for amazon referral
         $(document).ready(function () {
-            /*
-             if (google.loader.ClientLocation) {
-             visitor_countrycode = google.loader.ClientLocation.address.country_code;
-             if (visitor_countrycode == "CA") {
-             $('.amazonlink').click(function() {
-             link = $(this).attr('href');
-             console.log(link)
-             link = link.split(".com").join(".ca");
-             link = link.split("lookfwd-20").join("lookfwd01-20");
-             $('.amazonlink').attr('href', link);
-             });
-             }
-             }
-             */
-            $('iframe').contents().find('#content').css('border', 'none');
+            if (google.loader.ClientLocation) {
+                visitor_countrycode = google.loader.ClientLocation.address.country_code;
+                if (visitor_countrycode == "CA") {
+                    $('.amazonlinkus').hide();
+                } else {
+                    $('.amazonlinkca').hide();
+                }
+            }
         });
     </script>
     <script>
@@ -61,19 +54,16 @@
     <div class="movie widget-content text-center" id="book<%= i %>">
         <div class="mov-thumbnail">
             <img src=<%= res[i]['image'] %>>
-
             <div style="width: 100%;float: left;">
                 <% if (res[i]['amazon']) { %>
-                <!--
-                <a class="amazonlinka" href="<%= res[i]['amazon'] %>">
-                    <img width="30px" target="_blank" style="width: 30px;" class="amazon-link"
-                         src="http://www.nuance.com/assets/images/icon_flag_us.png">
+                <span style="float: left;margin-top:20px;width:100%;text-align: left;">Get it from:</span>
+                <a class="amazonlinkus" href="<%= res[i]['amazon'] %>">
+                    <img width="30px" target="_blank" style="width: 70px;" class="amazon-link"
+                         src="http://www.inevents.org/bratislava/wp-content/uploads/sites/2/2013/09/amazon-logo.jpg">
                 </a>
-                -->
-                <span style="float: left;margin-top:20px;width:100%;text-align: left;margin-left:10px;">Get it from:</span>
-                <a class="amazonlink"
+                <a class="amazonlinkca"
                    href="<%= res[i]['amazon'].toString().replace('.com', '.ca').replace('lookfwd-20', 'lookfwd01-20') %>">
-                    <img target="_blank" style="width: 70px;margin-bottom:20px;" class="amazon-link"
+                    <img target="_blank" style="width: 70px;" class="amazon-link"
                          src="http://www.neema.ca/sites/neema/files/amazon_ca.gif">
                 </a>
                 <% } %>
@@ -93,7 +83,7 @@
             <h3>
                 <% var date =  (res[i]['date']); %>
                 <% if (date == "31-12-1969"){ %>
-                Release Date: TBA
+                Release Date: Unavailable
                 <% } else { %>
                 Release Date: <%= date %>
                 <% } %>
@@ -102,8 +92,7 @@
             <p style="padding-bottom: 20px;">
                 <%= res[i]['desc'].toString().replace(/<(?:.|\n)*?>/gm, '') %>
             </p>
-            <!--
-                    -->
+            <!-- Add to Lookfwd form -->
             <form class="ajaxsubmit" style="float:left;width:100%;" action="/search" method="post">
                 <input name="image" class="hidden form-control" type="text"
                        value="<%= res[i]['image'] %>">
@@ -118,6 +107,7 @@
 
                 <input name="user" class="hidden form-control" type="text" value="Guest">
                 <input class="btn btn-primary btn-block" type="submit" value="Add to Lookfwd">
+                <% if (res[i]['upcoming']) {%>
                 <a href="http://lookfwd.info" title="Add to Calendar" class="addthisevent" style="
                         float: left;
                         margin-left: 5px;
@@ -132,7 +122,9 @@
                     <span class="_organizer" style="display: none;">Lookfwd</span>
                     <span class="_date_format" style="display: none;">DD/MM/YYYY</span>
                 </a>
+                <% } %>
             </form>
+            <!-- End of Add to Lookfwd form -->
 
             <p class="fullwidth">&nbsp;</p>
             <p class="fullwidth">&nbsp;</p>

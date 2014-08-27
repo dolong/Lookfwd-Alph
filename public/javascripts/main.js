@@ -8,8 +8,6 @@ $(document).ready(function() {
 			event.preventDefault();
 			if ($(this).parent().parent().find('.mov-top').is(":hidden") )
 				$(this).parent().parent().find('.mov-top').slideDown();
-			else
-				$(this).parent().parent().find('.mov-top').slideUp();
 			
 		});
 		$('.emailNotification a').click(function(event) {

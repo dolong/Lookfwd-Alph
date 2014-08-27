@@ -404,6 +404,7 @@ module.exports = function (app, passport) {
                     'date': formatted_date,
                     'author': resu[i]['author'],
                     'amazon': resu[i]['amazon'],
+                    'upcoming': (moment().format('DD-MM-YYYY') < formatted_date.valueOf()),
                     'image': image
                 })
                 j++
@@ -457,6 +458,7 @@ module.exports = function (app, passport) {
                     'date': formatted_date,
                     'author': resu[i]['author'],
                     'amazon': resu[i]['amazon'],
+                    'upcoming': (moment().format('DD-MM-YYYY') < formatted_date.valueOf()),
                     'image': image
                 })
                 j++
@@ -469,6 +471,7 @@ module.exports = function (app, passport) {
                     res: result,
                     pg: page,
                     c: c,
+                    today: moment().format('DD-MM-YYYY'),
                     q: q
                 });
             });
