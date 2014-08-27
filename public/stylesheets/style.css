@@ -4699,6 +4699,11 @@ input.search-large {
         width: 60%;
     }
 
+    .featuredNew-thumbnail img   {
+        max-width: 150px;
+        width: 150px;
+    }
+
     .featuredItem {
         margin-right: 0px !important;
     }
