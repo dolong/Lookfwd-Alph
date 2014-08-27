@@ -4683,6 +4683,9 @@ input.search-large {
 }
 
 @media (max-width: 768px) {
+    iframe {
+        display: none;
+    }
     .nav-search-left #searchForm {
 
     }
@@ -4697,7 +4700,7 @@ input.search-large {
     }
 
     .featuredItem {
-        margin-right: 5px !important;
+        margin-right: 0px !important;
     }
 
     .singleInfo {
