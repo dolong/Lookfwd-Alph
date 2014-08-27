@@ -54,7 +54,7 @@
                                 <th class="check-header hidden-xs sorting_disabled" role="columnheader" rowspan="1"
                                     colspan="1" aria-label="
                       Image
-                    " style="width: 17px;">Image
+                    " style="width: 17px;">
                                 </th>
                                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="dataTable1"
                                     rowspan="1" colspan="1" aria-label="
@@ -91,6 +91,12 @@
                       Status
                     : activate to sort column ascending" style="width: 243px;">
                                     Status
+                                </th>
+                                <th class="hidden-xs sorting" role="columnheader" tabindex="0"
+                                    aria-controls="dataTable1" rowspan="1" colspan="1" aria-label="
+                      Status
+                    : activate to sort column ascending" style="width: 243px;">
+                                    Featured
                                 </th>
                                 <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label=""
                                     style="width: 72px;">Remove
@@ -149,6 +155,10 @@
                                 <td class="hidden-xs ">
                                     <a href="checkamazon?q=<%= res[i]['title'] %>&id=<%= res[i]['id'] %>">Compare to
                                         Amazon for Update</a>
+                                </td>
+                                <td name="featured" class="hidden-xs ">
+                                    <span><%= res[i]['featured'] %></span>
+                                    <a class="edit" href="javascript:;"><i class="fa fa-fw icon-edit"></i></a>
                                 </td>
                                 <td class="actions ">
                                     <form action="/deletebook" method="post">

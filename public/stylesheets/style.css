@@ -4609,7 +4609,10 @@ body.fourofour .fourofour-container a.btn:hover {
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.hotheading {
+    font-size:15px;
+    font-weight: 400
+}
 .feature-search {
     float: right;
 }
@@ -4800,6 +4803,10 @@ input.search-large {
     height: 238px;
     border-radius: 4px;
     overflow: hidden;
+}
+.featuredNew-thumbnail img{
+    max-width:160px;
+    width:160px;
 }
 
 .details {

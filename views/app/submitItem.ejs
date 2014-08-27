@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<% include head.ejs %>
+<body>
+<div class="modal-shiftfix">
+    <% include header %>
+    <div class="container-fluid main-content">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="widget-container fluid-height clearfix fullwidth">
+                <div class="heading">
+                    <i class="fa fa-bars"></i>Add a Lookfwd item
+                </div>
+                <div class="widget-content padded">
+                    <form class="form-horizontal" action="/submission" method="post">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Item Type</label>
+                            <div class="col-md-7">
+                                <select class="form-control" disabled>
+                                    <option value="Category 1">Book</option>
+                                    <option value="Category 2">Upcoming Sale</option>
+                                    <option value="Category 2">Misc</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Name</label>
+                            <div class="col-md-7">
+                                <input class="form-control" name="title" placeholder="Text" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Date</label>
+                            <div class="col-md-7">
+                                <input class="form-control" name="date" placeholder="02/12/2015" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Image</label>
+                            <div class="col-md-7">
+                                <input class="form-control" name="image" placeholder="http://example.com/image.jpg" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">URL</label>
+                            <div class="col-md-7">
+                                <input class="form-control" name="amazon" placeholder="http://example.com/" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Description</label>
+
+                            <div class="col-md-7">
+                                <textarea class="form-control" name="desc" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Add Item</label>
+
+                            <div class="col-md-7">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-default-outline">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include footer %>
+</div>
+</body>
+
+</html>

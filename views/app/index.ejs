@@ -1,184 +1,113 @@
 <!DOCTYPE html>
 <html>
 <% include head.ejs %>
-    <body>
-    <div class="modal-shiftfix">
-      <% include header %>
-			<div class="container-fluid main-content">
+<body>
+<div class="modal-shiftfix">
+    <% include header %>
+    <div class="container-fluid main-content">
 
+        <% include leftmenu %>
+        <div class="col-md-8 section">
+            <h4 class="hotheading">Discover</h4>
 
-            <% include leftmenu %>
-                <div class="col-md-8 section">
-                    <h4 style="font-size:15px;font-weight: 400">Discover</h4>
+            <% include ../featured/featuredBanner %>
+            <div class="fullwidth featuredFloat">
+                <% include ../featured/gameOfThronesPreview %>
+            </div>
 
-				    <% include featuredBanner %>
-                    <div class="fullwidth featuredFloat">
-                        <hr/>
-                        <h4 style="font-size:15px;font-weight: 400">Winter is coming!</h4>
+            <!--
+                This is the home page What's hot featured.
+                @hot is the list of items with featured set to true
+            -->
+            <div class="fullwidth featuredFloat">
+                <hr/>
+                <h4 id="hot" class="hotheading">Whats hot!</h4>
 
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                            <div class="featuredFloat">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://airherald.com/wp-content/uploads/2014/06/Winds-Of-Winter-Release-Date.jpg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">The Winds of W..</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
-                                        <a class="showOptions" href="#">7/10/2015</a>
-                                    </div>
-                                </div>
+                <% for(var i = 0; i < hot.length; i++) { %>
+                <div class="featuredItem">
+                    <div class="featuredFloat">
+                        <div class="featuredNew widget-content text-center featuredWidget">
+                            <div class="featuredNew-thumbnail" >
+                                <a href="/single?q=<%= hot[i]['title'] %>&id=<%= hot[i]['id'] %>">
+                                    <img src="<%= hot[i]['image'] %>">
+                                </a>
                             </div>
-                            </div>
-                        </div>
+                            <div class="details" style="padding-left: 5px;">
+                                <p style="">
+                                    <% if (hot[i]['title'].toString().length > 24) { %>
+                                    <%= hot[i]['title'].toString().substring(0, 24) %>..
+                                    <% }else { %>
+                                    <%= hot[i]['title'] %>
+                                    <% } %>
+                                </p>
 
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://www.georgerrmartin.com/wp-content/uploads/2014/03/World-of-Ice-and-Fire-jkt-ElioLinda-1.jpg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">The World of Ice..</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
-                                        <a class="showOptions" href="#">1/10/2015</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://www.georgerrmartin.com/wp-content/uploads/2014/06/old-venus.jpg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">Old Venus</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
-                                        <a class="showOptions" href="#">1/10/2015</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://www.georgerrmartin.com/wp-content/uploads/2014/06/icedragon-2014_big.jpg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">The Ice Dragon</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">George R. Martin</p>
-                                        <a class="showOptions" href="#">1/10/2015</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fullwidth featuredFloat">
-                        <hr/>
-                        <h4  id="hot" style="font-size:15px;font-weight: 400">Whats hot!</h4>
-
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredFloat">
-                                    <div class="featuredNew widget-content text-center featuredWidget" >
-                                        <div class="featuredNew-thumbnail" style="width: auto;">
-                                            <img style="max-width:160px;width:160px;" src="http://www.brentweeks.com/news/wp-content/uploads/2013/08/The-Broken-Eye-HC.jpg">
-                                        </div>
-                                        <div class="details" style="padding-left: 5px;">
-                                            <p style="white-space: pre;">The Broken Eye</p>
-                                            <p style="white-space: pre;font-size:12px;color:#808080;">Brent Weeks</p>
-                                            <a class="showOptions" href="#">2014-08-14</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://levgrossman.com/wp-content/uploads/2013/11/640.jpeg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">The Magician's La..</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">Lev Grossman</p>
-                                        <a class="showOptions" href="#">2014-05-08</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://dolong.ca/placeholder.jpg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">The Doors of Stone</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">Patrick Rothfuss</p>
-                                        <a class="showOptions" href="#">TBA</a>
-                                        <a class="showOptions" href="#">Create an Account to track</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://dolong.ca/placeholder.jpg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">Stones Unhallo..</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">Brandon Sanderson</p>
-                                        <a class="showOptions" href="#">2014-05-08</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featuredItem">
-                            <div style="float: left;">
-                                <div class="featuredNew widget-content text-center featuredWidget" >
-                                    <div class="featuredNew-thumbnail" style="width: auto;">
-                                        <img style="max-width:160px;width:160px;" src="http://dolong.ca/placeholder.jpg">
-                                    </div>
-                                    <div class="details" style="padding-left: 5px;">
-                                        <p style="white-space: pre;">Firefight</p>
-                                        <p style="white-space: pre;font-size:12px;color:#808080;">Brandon Sanderson</p>
-                                        <a class="showOptions" href="#">2015-01-06</a>
-                                    </div>
-                                </div>
+                                <p style="white-space: pre;font-size:12px;color:#808080;"><%= hot[i]['author'] %></p>
+                                <a href="#"><%= hot[i]['date'] %></a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <% } %>
+            </div>
+            <!-- End of Hot titles -->
+            <!--
+                This is the home page Staff Picks featured.
+                @res is the list of items with featured set to true
+            -->
+            <div class="fullwidth featuredFloat">
+                <hr/>
+                <h4 id="staff" class="hotheading">Staff Picks</h4>
 
-                <div class="col-md-2 section hidden-xs hidden-sm" id="right-col-browse">
-                    <div class="featuredItem">
-                    <h4>New Books Today</h4>
-
-                            <div class="featuredNew widget-content text-center featuredWidget">
-                                <div class="featuredNew-thumbnail" style="width: auto;">
-                                    <img style="max-width:160px;width:160px;"
-                                         src="https://d.gr-assets.com/books/1375573023l/13206900.jpg">
-                                </div>
-                                <div class="details" style="padding-left: 5px;">
-                                    <p style="white-space: pre;">Winter</p>
-
-                                    <p style="white-space: pre;font-size:12px;color:#808080;">Marissa Meyer</p>
-                                    <a class="showOptions" href="#">2014-02-25</a>
-                                </div>
+                <% for(var i = 0; i < pick.length; i++) { %>
+                <div class="featuredItem">
+                    <div class="featuredFloat">
+                        <div class="featuredNew widget-content text-center featuredWidget">
+                            <div class="featuredNew-thumbnail" style="">
+                                <a href="/single?q=<%= pick[i]['title'] %>&id=<%= pick[i]['id'] %>">
+                                    <img src="<%= pick[i]['image'] %>">
+                                </a>
                             </div>
+                            <div class="details" style="padding-left: 5px;">
+                                <p style="">
+                                    <% if (pick[i]['title'].toString().length > 24) { %>
+                                    <%= pick[i]['title'].toString().substring(0, 24) %>..
+                                    <% }else { %>
+                                    <%= pick[i]['title'] %>
+                                    <% } %>
+                                </p>
+
+                                <p style="white-space: pre;font-size:12px;color:#808080;"><%= pick[i]['author'] %></p>
+                                <a class="showOptions" href="#"><%= pick[i]['date'] %></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-			</div>
-		<% include footer %> 
-	</div>
-  </body>
+                <% } %>
+            </div>
+            <!-- End of Hot titles -->
+        </div>
+
+        <div class="col-md-2 section hidden-xs hidden-sm" id="right-col-browse">
+            <div class="featuredItem">
+                <h4>New Books Today</h4>
+
+                <div class="featuredNew widget-content text-center featuredWidget">
+                    <div class="featuredNew-thumbnail" style="width: auto;">
+                        <img style="max-width:160px;width:160px;"
+                             src="https://d.gr-assets.com/books/1375573023l/13206900.jpg">
+                    </div>
+                    <div class="details" style="padding-left: 5px;">
+                        <p style="white-space: pre;">Winter</p>
+
+                        <p style="white-space: pre;font-size:12px;color:#808080;">Marissa Meyer</p>
+                        <a class="showOptions" href="#">2014-02-25</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include footer %>
+</div>
+</body>
 
 </html>

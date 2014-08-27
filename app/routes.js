@@ -1,4 +1,5 @@
 var Book = require('../app/models/book');
+var Submission = require('../app/models/submission');
 var aws = require("../node_scripts/lib/aws");
 var moment = require("../node_modules/moment");
 var Notification = require('../app/models/notification');
@@ -11,11 +12,53 @@ module.exports = function (app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function (req, res) {
-        Book.find({}).sort({date: 'desc'}).limit(10).exec(function (err, book) {
-            nbooks = book
+        // This is to find featured titles
+        Book.find({featured: {'$ne': null }}).sort({date: 'desc'}).limit(20).exec(function (err, resu) {
+            var hot = []
+            var staffpick = []
+            for (var i in resu) {
+                var descr = resu[i]['desc'];
+                var image = resu[i]['image'];
+                if (!descr) {
+                    descr = "Description for this book is not available yet";
+                }
+                var  date = resu[i]['date']
+                if (date) {
+                    var formatted_date = moment(date).format('DD-MM-YYYY');
+                }
+                if (!image) {
+                    image = "http://dolong.ca/placeholder.jpg";
+                }
+                //image = "http://dolong.ca/placeholder.jpg";
+                if (resu[i]['featured'] == "true") {
+                    hot.push({
+                        'title': resu[i]['title'],
+                        'id': resu[i]['_id'],
+                        'desc': descr,
+                        'date': formatted_date,
+                        'author': resu[i]['author'],
+                        'amazon': resu[i]['amazon'],
+                        'featured': resu[i]['featured'],
+                        'image': image
+                    })
+                } else {
+                    staffpick.push({
+                        'title': resu[i]['title'],
+                        'id': resu[i]['_id'],
+                        'desc': descr,
+                        'date': formatted_date,
+                        'author': resu[i]['author'],
+                        'amazon': resu[i]['amazon'],
+                        'featured': resu[i]['featured'],
+                        'image': image
+                    })
+
+                }
+            }
             res.render('./app/index.ejs', {
                 user: req.user,
-                nbooks: nbooks
+                hot: hot,
+                pick: staffpick
             });
         });
     });
@@ -101,6 +144,11 @@ module.exports = function (app, passport) {
         })
     })
 
+    app.get('/submititem', function (req, res) {
+        res.render('./app/submitItem.ejs', {
+            user: req.user
+        });
+    });
 
 // =============================================================================
 // ADMIN                      ==================================================
@@ -114,6 +162,12 @@ module.exports = function (app, passport) {
             });
     });
 
+
+    app.get('/thankyouforsubmission', function (req, res) {
+        res.render('./app/thankyou.ejs', {
+            user: req.user
+        });
+    });
     //Check Amazon to see if book is there
     app.get('/checkamazon', function (req, res) {
         var q = req.query['q']
@@ -146,7 +200,7 @@ module.exports = function (app, passport) {
                             prodAdv.call("ItemSearch", {SearchIndex: "Books", Title: resu[i]['title'], Author: resu[i]['author'], ResponseGroup: "Medium", ItemPage: "1"}, function (err, re) {
                                 var item = re.ItemSearchResponse.Items[0].Item[0]
                                 descr = (item.EditorialReviews[0].EditorialReview[0].Content[0])
-                                image = (item.MediumImage[0].URL[0])
+                                image = (item.LargeImage[0].URL[0])
                                 title = item.ItemAttributes[0].Title[0]
                                 author = item.ItemAttributes[0].Author[0]
                                 date = item.ItemAttributes[0].ReleaseDate[0]
@@ -219,6 +273,7 @@ module.exports = function (app, passport) {
                     'date': resu[i]['date'],
                     'author': resu[i]['author'],
                     'amazon': resu[i]['amazon'],
+                    'featured': resu[i]['featured'],
                     'image': resu[i]['image']
                 })
                 j++
@@ -254,7 +309,7 @@ module.exports = function (app, passport) {
         res.redirect(backURL);
     })
 
-    //Process a additional book
+    //Process a additional submission
     app.post('/addbook', function (req, res) {
         newbook = req.body
 
@@ -267,11 +322,28 @@ module.exports = function (app, passport) {
             else{
                 console.log(data)
                 console.log('Inserted ')
-                res.redirect("/single?q=" + req.param("title") + "&t=title");
-
             }
         });
         res.redirect("/single?q=" + req.param("title") + "&t=title");
+
+    })
+
+
+    //Process a additional book
+    app.post('/submission', function (req, res) {
+        newbook = req.body
+        var rec = new Submission(newbook);
+
+        rec.save(function(error, data){
+            if(error){
+                console.log('Error inserting data '+error)
+            }
+            else{
+                console.log(data)
+                console.log('Inserted ')
+            }
+        });
+        res.redirect("/thankyouforsubmission");
 
     })
 // =============================================================================

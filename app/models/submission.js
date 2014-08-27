@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 var ObjectId = mongoose.Schema.ObjectId
 	
-var BookSchema = new mongoose.Schema({
+var SubmissionSchema = new mongoose.Schema({
 	id: {type: ObjectId},
 	date: {type: Date},
 	title: {type: String, unique: true},
@@ -13,4 +13,4 @@ var BookSchema = new mongoose.Schema({
     featured: {type: String}
 })
 
-module.exports = mongoose.model('Books', BookSchema)
+module.exports = mongoose.model('Submissions', SubmissionSchema)
